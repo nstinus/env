@@ -1,0 +1,31 @@
+#!/usr/bin/zsh
+
+clean()
+{
+  	for i in pyc o Makefile Makefile.Debug Makefile.Release
+	do
+		find . -name "*.${i}" -exec rm {} \;
+	done
+}
+
+gmdiff()
+{
+    git diff $* | mate
+}
+
+new_sandbox_project()
+{
+    if [[ $# > 1 ]]
+    then
+        echo 'Only one arguments can be used.'
+    fi
+    pushd ~/projects/dev/sandbox
+    mkdir $1
+    # if [[ $]]
+    # then
+    #     echo "$1 already exists."
+    # fi
+    pushd $1
+    git init
+    emacs .
+}

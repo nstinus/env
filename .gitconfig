@@ -1,0 +1,20 @@
+[gui]
+	recentrepo = /Users/nico/scripts
+[user]
+	name = Nicolas Stinus
+	email = nicolas.stinus@gmail.com
+[color]
+	status = auto
+	branch = auto
+	log = auto
+	diff = auto
+[alias]
+	st = status
+	co = checkout
+	rbm = rebase master
+	graph = log --graph --oneline --abbrev-commit --decorate --all
+[rerere]
+	enabled = 1
+[github]
+	user = nstinus
+	token = 828f7e3e35887d54473d3e76cdee33ed

@@ -1,0 +1,20 @@
+export PATH=$PATH:/opt/local/bin:/opt/local/sbin:~/scripts
+export PATH=$PATH:/usr/local/Trolltech/Qt-4.4.1/bin
+export PATH=$PATH:/Library/PostgreSQL/8.3/bin
+export PATH=$PATH:/Developer/usr/bin:/usr/local/cuda/bin
+
+export MANPATH=$MANPATH:/opt/local/share/man:/usr/local/man
+export PYTHONSTARTUP=~/.pythonstartup
+
+export COMPILE_SILENT=1
+
+export GIT_EDITOR="vim"
+
+export EDITOR="emacs"
+
+#export GLOG_logtostderr=0
+export GLOG_log_dir=/tmp
+
+source ~/projects/dev/nfp/cfg/env.zsh
+
+export LC_ALL='C'
