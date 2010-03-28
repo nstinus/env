@@ -85,12 +85,12 @@ git_branch() {
     git_branch=$(git branch 2>/dev/null | grep -E '^\*' | cut -b 3-) || return
     if [ git_branch != "" ]
     then
-        git_branch="• %{$fg[blue]%}$git_branch%{$reset_color%}"
+        git_branch=". %{$fg[cyan]%}$git_branch%{$reset_color%}"
     fi
     echo $git_branch
 }
 
-PROMPT='%{$fg[yellow]%}%n@%m%{$reset_color%} • %{$fg[cyan]%}%~%E%{$reset_color%} $(git_branch) • %{$fg[green]%}%*%{$reset_color%}
+PROMPT='%{$fg[yellow]%}%n@%m%{$reset_color%} . %{$fg[blue]%}%~%E%{$reset_color%} $(git_branch) . %{$fg[green]%}%*%{$reset_color%}
 %{$fg[red]%}%#%{$reset_color%} '
 PROMPT2='%{$fg[blue]%}%_%{$reset_color%} > '
 
