@@ -24,3 +24,33 @@ new_sandbox_project()
     git init
     emacs .
 }
+
+retry() {
+    if [[ $# -lt 3 ]]; then
+        echo "usage: retry rep t2sleep command (rep.<=0 means inf.)"
+        return
+    fi
+    ret=0
+    rep=$1
+    st=$2
+    shift 2
+    cmd=$*
+    echo "Will try $rep times, sleeping $st, the command << $cmd >>"
+    res=1
+    while [[ $res != 0 ]]
+    do
+        zsh -c "${cmd}"
+        res=$?
+        if [[ $res -eq 0 ]]; then
+            break
+        else
+            echo "Fail!"
+        fi
+        let rep=${rep}-1
+        if [[ $rep -eq 0 ]]; then
+            break
+        elif [[ $st -gt 0 && $rep -gt 0 || $rep -lt 0 ]]; then
+            sleep $st
+        fi
+    done
+}
