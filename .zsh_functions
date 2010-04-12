@@ -8,11 +8,6 @@ clean()
 	done
 }
 
-gmdiff()
-{
-    git diff $* | mate
-}
-
 new_sandbox_project()
 {
     if [[ $# > 1 ]]
