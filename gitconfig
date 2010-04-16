@@ -1,8 +1,6 @@
-[gui]
-	recentrepo = /Users/nico/scripts
 [user]
-	name = Nicolas Stinus
-	email = nicolas.stinus@gmail.com
+	name = First Last
+	email = Email
 [color]
 	status = auto
 	branch = auto
@@ -15,6 +13,3 @@
 	graph = log --graph --oneline --abbrev-commit --decorate --all
 [rerere]
 	enabled = 1
-[github]
-	user = nstinus
-	token = 828f7e3e35887d54473d3e76cdee33ed
