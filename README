@@ -1,0 +1,50 @@
+=================
+ENVIRONMENT FILES
+=================
+
+Introduction
+------------
+
+This repo contains various .config files that are used by:
+- zsh
+- emacs
+- git
+
+Installation
+------------
+
+Personal shit shouldn't be in the shared repo. A good solution
+to keep your personal infos and still be able to contribute/develop
+to this shit is as follows:
+
+You'll need two repos:
+
+The 'dev' repo is in ~/dev/env and it pulls from github.
+  cd ~/dev
+  git clone git://github.com/nstinus/env.git
+
+The 'prod' repo is in ~/env and it pulls from the dev repo.
+  cd
+  git clone ~/dev/env
+
+In the prod repo, create a new branch origin/master
+  git checkout -b my_stuff origin/master
+Commit the personal modif in there. And keep the repo on this
+branch.
+
+Then, you need the install the files. You can do that by for
+example, linking ~/.somefile to the one in the prod repo.
+  ln -s ~/env/somefile ~/.somefile
+
+When you need to alter the shit (in a way that could be shared).
+Go in your dev repo, make the changes, pull/push/test/commit,
+whatever. When you're ready, go in the dev repo and just pull from
+master.
+  git checkout master; git pull
+Then merge that shit in your personal branch
+  git checkout my_stuff; git merge master
+If you need to add personal stuff. You can commit on that branch,
+just never merge my_stuff to master.
+
+Of course there are other ways to do it, but this one is rather
+clean and safe at the expand of being a little complicated...
