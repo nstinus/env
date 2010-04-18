@@ -10,6 +10,6 @@
 	st = status
 	co = checkout
 	rbm = rebase master
-	graph = log --graph --oneline --abbrev-commit --decorate --all
+	graph = log --graph --oneline --abbrev-commit --decorate
 [rerere]
 	enabled = 1
