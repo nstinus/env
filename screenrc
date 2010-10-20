@@ -1,0 +1,3 @@
+startup_message off
+caption always '%{.w.}%?%F%{.W.}%?%-Lw%{= wk}%?%F%{= BW}%?%51>%n%f* %t%{-}%+Lw%<'
+backtick 0 0 0 echo $USER
