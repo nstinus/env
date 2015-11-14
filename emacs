@@ -530,3 +530,12 @@ The search start in the first upper directory where .project file exists or in \
 (put 'upcase-region 'disabled nil)
 
 (put 'scroll-left 'disabled nil)
+
+; Add cmake listfile names to the mode list.
+(setq auto-mode-alist
+	  (append
+	   '(("CMakeLists\\.txt\\'" . cmake-mode))
+	   '(("\\.cmake\\'" . cmake-mode))
+	   auto-mode-alist))
+
+(autoload 'cmake-mode "~/usr/share/emacs/site-lisp/cmake-mode.el" t)
