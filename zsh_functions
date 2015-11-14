@@ -54,3 +54,10 @@ retry() {
         fi
     done
 }
+
+triage_seq() {
+    for f in $(find . -type f -name 'S*.JPG' -maxdepth 1); do
+        mkdir -p sequences/${f:2:4}
+        mv -v $f sequences/${f:2:4}
+    done
+}
