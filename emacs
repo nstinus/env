@@ -13,10 +13,10 @@
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#302226")
 
-;; Select stuff holding <Shift>
-(pc-selection-mode 1)
+; ;; Select stuff holding <Shift>
+; (pc-selection-mode 1)
 
-(find-file "~/projects/dev/nfp/src/BROWSE")
+; (find-file "~/projects/dev/nfp/src/BROWSE")
 
 ;; Cursor
 (set-cursor-color "#FFFF33")
@@ -34,9 +34,9 @@
 
 ;;(load "xrefactory")
 
-(load "/usr/local/share/emacs/23.1/lisp/haskell-mode/haskell-site-file")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+; (load "/usr/local/share/emacs/23.1/lisp/haskell-mode/haskell-site-file")
+; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;;(toggle-highlight-paren-mode)
 
