@@ -61,3 +61,28 @@ triage_seq() {
         mv -v $f sequences/${f:2:4}
     done
 }
+
+emx() {
+    emacsclient -c -e '(load-file "~/.emacs")' -- $@
+}
+
+
+emt() {
+    emacsclient -t -e '(load-file "~/.emacs")' -- $@
+}
+
+run_chromium() {
+    $(which chromium) -proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE myproxy" --disk-cache-dir=$HOME/.cache.chromium $@ &
+}
+
+vpn ()
+{
+    if [[ $1 == "list" ]]; then
+	sudo find /etc/openvpn/client/nordvpn -type f -name "${2}*.nordvpn.com.udp1194.ovpn" | parallel -j8 basename {} | cut -d . -f 1 | sort | column
+    else
+	sudo ufw disable || return 1
+	sudo systemctl $1 openvpn-client@nordvpn_${2} || return 2
+	ifconfig | grep -q tun || return 3
+	sudo ufw enable || return 4
+    fi
+}
