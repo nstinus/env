@@ -39,13 +39,6 @@ then
 fi
 
 
-# List only directories and symbolic
-# links that point to directories
-alias lsd='ls -ld *(-/DN)'
-
-# List only file beginning with "."
-alias lsa='ls -ld .*'
-
 # Shell functions
 #setenv() { typeset -x "${1}${1:+=}${(@)argv[2,$#]}" }  # csh compatibility
 #freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
@@ -62,12 +55,12 @@ alias lsa='ls -ld .*'
 # automatically remove duplicates from these arrays
 #typeset -U path cdpath fpath manpath
 
-# Global aliases -- These do not have to be
-# at the beginning of the command line.
-alias -g M=' | more'
-alias -g H=' | head'
-alias -g T=' | tail'
-alias -g G=' | grep '
+# # Global aliases -- These do not have to be
+# # at the beginning of the command line.
+# alias -g M=' | more'
+# alias -g H=' | head'
+# alias -g T=' | tail'
+# alias -g G=' | grep '
 
 #manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
 #export MANPATH
@@ -137,7 +130,7 @@ zmodload -ap zsh/mapfile mapfile
 
 # bindkey -v               # vi key bindings
 
-#bindkey -e                 # emacs key bindings
+bindkey -e                 # emacs key bindings
 bindkey ' ' magic-space    # also do history expansion on space
 bindkey '^I' complete-word # complete on tab, leave expansion to _expand
 
@@ -187,3 +180,13 @@ zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
 # ignore completion functions (until the _ignored completer)
 zstyle ':completion:*:functions' ignored-patterns '_*'
 
+mkdir -p /dev/shm/cache 2>/dev/null
+export CCACHE_DIR=/dev/shm/ccache
+
+mkdir -p /tmp/cache/google-chrome 2>/dev/null
+
+if [ -f ~/.zsh_nocorrect ]; then
+	while read -r COMMAND; do
+		alias $COMMAND="nocorrect $COMMAND"
+	done < ~/.zsh_nocorrect
+fi
