@@ -1,30 +1,5 @@
 #!/usr/bin/zsh
 
-clean()
-{
-  	for i in pyc o Makefile Makefile.Debug Makefile.Release
-	do
-		find . -name "*.${i}" -exec rm {} \;
-	done
-}
-
-new_sandbox_project()
-{
-    if [[ $# > 1 ]]
-    then
-        echo 'Only one arguments can be used.'
-    fi
-    pushd ~/projects/dev/sandbox
-    mkdir $1
-    # if [[ $]]
-    # then
-    #     echo "$1 already exists."
-    # fi
-    pushd $1
-    git init
-    emacs .
-}
-
 retry() {
     if [[ $# -lt 3 ]]; then
         echo "usage: retry rep t2sleep command (rep.<=0 means inf.)"
@@ -62,27 +37,41 @@ triage_seq() {
     done
 }
 
-emx() {
-    emacsclient -c -e '(load-file "~/.emacs")' -- $@
-}
-
-
-emt() {
-    emacsclient -t -e '(load-file "~/.emacs")' -- $@
-}
-
 run_chromium() {
     $(which chromium) -proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE myproxy" --disk-cache-dir=$HOME/.cache.chromium $@ &
 }
 
 vpn ()
 {
-    if [[ $1 == "list" ]]; then
-	sudo find /etc/openvpn/client/nordvpn -type f -name "${2}*.nordvpn.com.udp1194.ovpn" | parallel -j8 basename {} | cut -d . -f 1 | sort | column
-    else
-	sudo ufw disable || return 1
-	sudo systemctl $1 openvpn-client@nordvpn_${2} || return 2
-	ifconfig | grep -q tun || return 3
-	sudo ufw enable || return 4
-    fi
+    case $1 in
+        list)
+	    sudo nordvpn list $2 | column
+            ;;
+        status)
+            sudo nordvpn status
+            ;;
+        *)
+	    sudo ufw disable || return 1
+	    sudo nordvpn $1 ${2} || return 2
+	    ifconfig | grep -q tun || return 3
+	    sudo ufw enable || return 4
+            ;;
+    esac
+}
+
+email ()
+{
+    case $1 in
+        sync)
+            mbsync -a
+            notmuch new
+            ;;
+        purge)
+            notmuch search --format=text0 --output=files tag:deleted \
+                | xargs -0 --no-run-if-empty rm -v
+            ;;
+        *)
+            emacs -f notmuch
+            ;;
+    esac
 }
