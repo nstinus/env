@@ -1,6 +1,6 @@
-#/bin/bash -l
+#/bin/bash
 
-for i in $(find . -not -name README -and -not -name install.sh -maxdepth 1 -type f)
+for i in $(find . -maxdepth 1 -not -name README -and -not -name install.sh -type f)
 do
     CMD="ln -s $i ~/.$(basename $i)"
     echo $CMD
