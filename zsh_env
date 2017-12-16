@@ -1,5 +1,5 @@
-export EDITOR="emacsclient -nw -e '(load-file "~/.emacs")'"
-export VISUAL="emacsclient -e '(load-file "~/.emacs")'"
+export EDITOR='emacsclient -a "" -nw'
+export VISUAL=$EDITOR
 export GIT_EDITOR=$EDITOR
 
 #export GLOG_logtostderr=0

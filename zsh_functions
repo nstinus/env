@@ -53,7 +53,7 @@ vpn ()
         *)
 	    sudo ufw disable || return 1
 	    sudo nordvpn $1 ${2} || return 2
-	    ifconfig | grep -q tun || return 3
+	    sleep 1; ifconfig | grep -q tun || return 3
 	    sudo ufw enable || return 4
             ;;
     esac
@@ -74,4 +74,15 @@ email ()
             emacs -f notmuch
             ;;
     esac
+}
+
+triage_date ()
+{
+    test $# -ge 1 || (>&2 echo "Usage: triage_date source_dir [dest_dir]"; return)
+    for f in $(find $1 -maxdepth 1 -type f)
+    do
+        local ts=`stat $f | grep mtime | awk '{print $2}'`
+        local dest=${2:-.}/`date --date=@$ts +'%Y/%m'`
+        mkdir -v -p $dest && mv -v $f $dest/
+    done
 }

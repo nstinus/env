@@ -190,3 +190,7 @@ if [ -f ~/.zsh_nocorrect ]; then
 		alias $COMMAND="nocorrect $COMMAND"
 	done < ~/.zsh_nocorrect
 fi
+
+fpath+=('/home/nicolas/Development/nordvpn/completion')
+rm ~/.zcompdump
+autoload -U compinit && compinit
