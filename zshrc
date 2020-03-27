@@ -191,6 +191,8 @@ if [ -f ~/.zsh_nocorrect ]; then
 	done < ~/.zsh_nocorrect
 fi
 
+alias towervpn='forticlientsslvpn_cli --server vpn.tower-research.com:443 --vpnuser nstinus'
+
 fpath+=('/home/nicolas/Development/nordvpn/completion')
 rm ~/.zcompdump
 autoload -U compinit && compinit

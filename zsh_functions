@@ -38,7 +38,8 @@ triage_seq() {
 }
 
 run_chromium() {
-    $(which chromium) -proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE myproxy" --disk-cache-dir=$HOME/.cache.chromium $@ &
+    # $(which chromium) -proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE myproxy" --disk-cache-dir=$HOME/.cache.chromium $@ &
+    $(which chromium) --disk-cache-dir=$HOME/.cache.chromium $@ &
 }
 
 vpn ()
@@ -82,7 +83,7 @@ triage_date ()
     for f in $(find $1 -maxdepth 1 -type f)
     do
         local ts=`stat $f | grep mtime | awk '{print $2}'`
-        local dest=${2:-.}/`date --date=@$ts +'%Y/%m'`
+        local dest=${2:-.}/`date --date=@$ts +'%Y/%m/%d'`
         mkdir -v -p $dest && mv -v $f $dest/
     done
 }

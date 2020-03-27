@@ -8,11 +8,11 @@
 (set-cursor-color "white")
 
 ;; Highlite current line.
-(global-hl-line-mode 1)
-(set-face-background 'hl-line "#302226")
+; (global-hl-line-mode 1)
+; (set-face-background 'hl-line "#302226")
 
 ;; Cursor
-(set-cursor-color "#FFFF33")
+; (set-cursor-color "#FFFF33")
 
 ;; Gid
 (autoload 'gid "gid" nil t)
@@ -69,10 +69,13 @@
 (setq overflow-newline-into-fringe t)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("09cadcc2784baa744c6a7c5ebf2a30df59c275414768b0719b800cabd8d1b842" "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(desktop-save-mode t)
  '(dired-kept-versions 5)
  '(gdb-many-windows t)
@@ -85,19 +88,22 @@
  '(large-file-warning-threshold 50000000)
  '(mark-ring-max 32)
  '(open-paren-in-column-0-is-defun-start nil)
+ '(package-selected-packages
+   (quote
+    (racer flycheck-rust lsp-ui monokai-pro-theme rainbow-delimiters monokai-theme material-theme spacemacs-theme cargo rust-mode)))
  '(read-file-name-completion-ignore-case t)
  '(remote-shell-program "/usr/bin/ssh")
- '(standard-indent 2)
- '(tab-width 8)
+ '(standard-indent 4)
+ '(tab-width 4)
  '(vc-make-backup-files t)
  '(version-control t))
 
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 (put 'narrow-to-region 'disabled nil)
@@ -131,8 +137,23 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
 
-;; Set your lisp system and, optionally, some contribs
-(setq inferior-lisp-program "/usr/bin/sbcl")
-(setq slime-contribs '(slime-fancy))
+; (require 'eglot)
+; (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+; (add-hook 'c-mode-hook 'eglot-ensure)
+; (add-hook 'c++-mode-hook 'eglot-ensure)
 
-(autoload 'notmuch "notmuch" "notmuch mail" t)
+(load-theme 'monokai-pro t)
+
+(use-package rust-mode
+    :mode "\\.rs\\'"
+    :init
+    (setq rust-format-on-save t))
+;; (use-package lsp-mode
+;;     :init
+;;     (add-hook 'prog-mode-hook 'lsp-mode)
+;;     :config
+;;     (use-package lsp-flycheck
+;;         :ensure f ; comes with lsp-mode
+;;         :after flycheck))
+;; (use-package lsp-rust
+;;     :after lsp-mode)

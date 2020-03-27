@@ -4,3 +4,6 @@ export GIT_EDITOR=$EDITOR
 
 #export GLOG_logtostderr=0
 export GLOG_log_dir=/tmp
+export NINJA_STATUS="[%f+%r/%t %es] "
+
+export PICTURES_FOLDER=/home/nicolas/annex/Pictures/
